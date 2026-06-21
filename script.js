@@ -50,19 +50,11 @@ navMovil.querySelectorAll('a').forEach((link) => {
 ========================================= */
 const preguntas = document.querySelectorAll('.acordeon__pregunta');
 
+// La animación de apertura vive en CSS (grid-template-rows en .acordeon__respuesta);
+// acá solo togglear la clase, sin medir scrollHeight.
 preguntas.forEach((boton) => {
     boton.addEventListener('click', () => {
-        const item = boton.closest('.acordeon__item');
-        const respuesta = item.querySelector('.acordeon__respuesta');
-        const estaAbierto = item.classList.contains('abierto');
-
-        if (estaAbierto) {
-            item.classList.remove('abierto');
-            respuesta.style.maxHeight = null;
-        } else {
-            item.classList.add('abierto');
-            respuesta.style.maxHeight = respuesta.scrollHeight + 'px';
-        }
+        boton.closest('.acordeon__item').classList.toggle('abierto');
     });
 });
 

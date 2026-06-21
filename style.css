@@ -216,16 +216,18 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.75px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
 
+/* grid-template-rows en vez de max-height: anima sin forzar layout thrash
+   en el resto de la página (la fila 0fr/1fr es la única que cambia). */
 .nav-movil {
-    max-height: 0;
+    display: grid;
+    grid-template-rows: minmax(0, 0fr);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
     background-color: var(--carbon);
     border-bottom: 1px solid var(--linea);
-    transition: max-height var(--medio);
+    transition: grid-template-rows var(--medio);
 }
-.nav-movil.abierto { max-height: 360px; }
+.nav-movil.abierto { grid-template-rows: minmax(0, 1fr); }
+.nav-movil__inner { min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
 .nav-movil a { padding: 16px 24px; border-top: 1px solid var(--linea); color: var(--gris); font-size: 0.95rem; }
 .nav-movil .boton { margin: 16px 24px; justify-content: center; }
 
@@ -292,6 +294,32 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
     50% { transform: translateY(4px); }
 }
 
+/* Cifras clave del hero — refuerzan credibilidad de marca de un vistazo */
+.hero__stats { display: flex; gap: 32px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--linea); }
+.hero__stats dt { font-family: var(--display); font-size: 1.6rem; font-weight: 600; color: var(--ambar-claro); }
+.hero__stats dd { font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gris); }
+
+/* Sello lateral fijo, inspirado en las cintas de premio de sitios editoriales:
+   refuerza "marca desde 2018" sin competir con el contenido principal.
+   Se oculta en pantallas chicas porque no cabe sin solaparse con el texto. */
+.hero__sello-lateral {
+    display: none;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center;
+    font-family: var(--display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--gris-tenue);
+    white-space: nowrap;
+}
+@media (min-width: 1100px) {
+    .hero__sello-lateral { display: block; }
+}
+
 /* =========================================
    NUESTRA CERVEZA
 ========================================= */
@@ -305,10 +333,10 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
     align-items: center;
     padding: 24px 0;
     border-top: 1px solid var(--linea);
-    transition: padding-left var(--medio);
+    transition: transform var(--medio);
 }
 .fila-cerveza:last-child { border-bottom: 1px solid var(--linea); }
-.fila-cerveza:hover { padding-left: 12px; }
+.fila-cerveza:hover { transform: translateX(12px); }
 
 .fila-cerveza__num { font-family: var(--display); font-size: 0.95rem; color: var(--ambar); }
 .fila-cerveza__imagen {
@@ -319,7 +347,10 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
     background-position: center;
     background-color: var(--carbon);
     border: 1px solid var(--linea);
+    filter: grayscale(60%);
+    transition: filter var(--medio);
 }
+.fila-cerveza:hover .fila-cerveza__imagen { filter: grayscale(0%); }
 .fila-cerveza__cuerpo h3 {
     display: flex;
     align-items: center;
@@ -332,7 +363,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 }
 .fila-cerveza__sello { width: 20px; height: 20px; }
 .fila-cerveza__cuerpo p { color: var(--gris); font-size: 0.92rem; }
-.fila-cerveza__dato { display: none; font-size: 0.88rem; color: var(--gris-tenue); white-space: nowrap; }
+.fila-cerveza__dato { display: none; font-size: 0.88rem; color: var(--gris); white-space: nowrap; }
 
 /* =========================================
    HISTORIA
@@ -346,7 +377,10 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
     background-color: var(--carbon);
     border: 1px solid var(--linea);
     border-radius: var(--radio);
+    filter: grayscale(35%);
+    transition: filter var(--medio);
 }
+.historia__visual:hover .historia__foto { filter: grayscale(0%); }
 .historia__texto .titulo-seccion { margin-bottom: 20px; }
 .historia__texto p { color: var(--gris); font-size: 0.98rem; max-width: 46ch; margin-bottom: 16px; }
 .historia__texto p:last-child { margin-bottom: 0; }
@@ -376,7 +410,8 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 ========================================= */
 .noticias { padding: 88px 0; border-top: 1px solid var(--linea); background-color: var(--negro-alterno); }
 .noticias__grid { display: grid; gap: 20px; }
-.noticias__tarjeta { padding: 28px; background-color: var(--carbon); border: 1px solid var(--linea); border-radius: var(--radio); border-left: 3px solid var(--ambar); }
+.noticias__tarjeta { padding: 28px; background-color: var(--carbon); border: 1px solid var(--linea); border-radius: var(--radio); transition: border-color var(--rapido), background-color var(--rapido); }
+.noticias__tarjeta:hover { border-color: var(--ambar); background-color: var(--negro-alterno); }
 .noticias__fecha { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ambar-claro); }
 .noticias__tarjeta h3 { font-family: var(--display); text-transform: uppercase; font-size: 1.05rem; margin: 10px 0 8px; }
 .noticias__tarjeta p { color: var(--gris); font-size: 0.92rem; }
@@ -414,8 +449,11 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .acordeon__icono::after { width: 1.5px; height: 14px; transform: translate(-50%, -50%); }
 .acordeon__item.abierto .acordeon__icono::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
 
-.acordeon__respuesta { max-height: 0; overflow: hidden; transition: max-height var(--medio); }
-.acordeon__respuesta p { color: var(--gris); font-size: 0.95rem; padding-bottom: 22px; max-width: 60ch; }
+/* grid-template-rows en vez de max-height calculado en JS: misma animación,
+   sin medir scrollHeight ni forzar layout thrash en cada toggle. */
+.acordeon__respuesta { display: grid; grid-template-rows: minmax(0, 0fr); overflow: hidden; transition: grid-template-rows var(--medio); }
+.acordeon__item.abierto .acordeon__respuesta { grid-template-rows: minmax(0, 1fr); }
+.acordeon__respuesta p { min-height: 0; overflow: hidden; color: var(--gris); font-size: 0.95rem; padding-bottom: 22px; max-width: 60ch; }
 
 /* =========================================
    CONTACTO
@@ -461,7 +499,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .footer__redes a:hover { color: var(--ambar-claro); border-color: var(--ambar); }
 
 .footer__columna { display: flex; flex-direction: column; gap: 12px; }
-.footer__columna h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gris-tenue); margin-bottom: 4px; }
+.footer__columna h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gris); margin-bottom: 4px; }
 .footer__columna a, .footer__horario { color: var(--gris); font-size: 0.9rem; transition: color var(--rapido); }
 .footer__columna a:hover { color: var(--ambar-claro); }
 

@@ -52,13 +52,15 @@
   </div>
 
   <nav class="nav-movil" id="navMovil">
-    <a href="#inicio">Inicio</a>
-    <a href="#cerveza">Nuestra Cerveza</a>
-    <a href="#historia">Historia</a>
-    <a href="#puntos-de-venta">Dónde encontrarnos</a>
-    <a href="#noticias">Noticias</a>
-    <a href="#faq">Preguntas</a>
-    <a href="#contacto" class="boton boton--solido">Contacto</a>
+    <div class="nav-movil__inner">
+      <a href="#inicio">Inicio</a>
+      <a href="#cerveza">Nuestra Cerveza</a>
+      <a href="#historia">Historia</a>
+      <a href="#puntos-de-venta">Dónde encontrarnos</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#contacto" class="boton boton--solido">Contacto</a>
+    </div>
   </nav>
 </header>
 
@@ -66,10 +68,10 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="inicio">
-    <!-- Mientras no haya video real, el poster (img/hero-poster.svg) se queda
-         fijo en pantalla. Reemplaza ambos por footage real: cerveza fría,
-         condensación o un vertido lento, oscurecido por el overlay de abajo. -->
-    <video class="hero__video" autoplay muted loop playsinline poster="img/hero-poster.svg">
+    <!-- Mientras no haya video real, el poster (foto generada con IA) se queda
+         fijo en pantalla. Si más adelante hay footage real de la cervecería,
+         reemplaza también el <source>. -->
+    <video class="hero__video" autoplay muted loop playsinline poster="img/hero-poster.jpg">
       <source src="img/hero-bg.mp4" type="video/mp4">
     </video>
     <div class="hero__overlay"></div>
@@ -92,7 +94,15 @@
         <a href="#cerveza" class="boton boton--solido boton--grande">Ver nuestras cervezas</a>
         <a href="#puntos-de-venta" class="boton boton--texto">Dónde comprarla →</a>
       </div>
+
+      <dl class="hero__stats">
+        <div><dt>2018</dt><dd>Fundación</dd></div>
+        <div><dt>04</dt><dd>Estilos</dd></div>
+        <div><dt>100%</dt><dd>Artesanal</dd></div>
+      </dl>
     </div>
+
+    <span class="hero__sello-lateral" aria-hidden="true">DESDE 2018</span>
   </section>
 
   <!-- ============ NUESTRA CERVEZA ============ -->
@@ -107,7 +117,7 @@
 
         <article class="fila-cerveza" data-reveal>
           <span class="fila-cerveza__num">01</span>
-          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-rubia.svg')"></div>
+          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-rubia.jpg')"></div>
           <div class="fila-cerveza__cuerpo">
             <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Rubia Forja</h3>
             <p>Golden Ale · Ligera, refrescante y con un final limpio. Ideal para empezar la noche.</p>
@@ -117,7 +127,7 @@
 
         <article class="fila-cerveza" data-reveal>
           <span class="fila-cerveza__num">02</span>
-          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-roja.svg')"></div>
+          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-roja.jpg')"></div>
           <div class="fila-cerveza__cuerpo">
             <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Roja Carmín</h3>
             <p>Amber Ale · Notas a caramelo tostado con un amargor justo. La más pedida en barra.</p>
@@ -127,7 +137,7 @@
 
         <article class="fila-cerveza" data-reveal>
           <span class="fila-cerveza__num">03</span>
-          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-negra.svg')"></div>
+          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-negra.jpg')"></div>
           <div class="fila-cerveza__cuerpo">
             <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Negra Fragua</h3>
             <p>Stout · Café, chocolate y cuerpo intenso. Para tomar despacio.</p>
@@ -137,7 +147,7 @@
 
         <article class="fila-cerveza" data-reveal>
           <span class="fila-cerveza__num">04</span>
-          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-ipa.svg')"></div>
+          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-ipa.jpg')"></div>
           <div class="fila-cerveza__cuerpo">
             <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">IPA Yunque</h3>
             <p>India Pale Ale · Lupulada, cítrica y con carácter. La favorita de los exploradores.</p>
@@ -153,7 +163,7 @@
   <section class="historia" id="historia">
     <div class="contenedor historia__grid">
       <div class="historia__visual" data-reveal>
-        <div class="historia__foto" style="background-image:url('img/historia.svg')"></div>
+        <div class="historia__foto" style="background-image:url('img/historia.jpg')"></div>
       </div>
 
       <div class="historia__texto" data-reveal>
