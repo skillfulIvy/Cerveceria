@@ -1,0 +1,755 @@
+/* =========================================
+   VARIABLES — sistema de diseño
+========================================= */
+:root {
+    --crema: #f4ede1;
+    --crema-oscura: #ebe1d0;
+    --papel: #ffffff;
+    --marron: #2b1f17;
+    --marron-suave: #5c4a3a;
+    --linea: #ddccae;
+    --ambar: #c17a3d;
+    --ambar-oscuro: #a3622d;
+    --lupulo: #5a6b4d;
+
+    --display: 'Bitter', serif;
+    --texto: 'Inter', sans-serif;
+
+    --ancho-maximo: 1140px;
+    --radio: 10px;
+
+    --rapido: 0.2s ease;
+    --medio: 0.4s ease;
+}
+
+/* =========================================
+   RESET
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--crema);
+    background-image:
+        radial-gradient(circle at 100% 0%, rgba(193, 122, 61, 0.08), transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(90, 107, 77, 0.06), transparent 40%);
+    background-attachment: fixed;
+    color: var(--marron);
+    font-family: var(--texto);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+::selection {
+    background-color: var(--ambar);
+    color: var(--papel);
+}
+
+:focus-visible {
+    outline: 2px solid var(--ambar);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================
+   UTILIDADES
+========================================= */
+.contenedor {
+    max-width: var(--ancho-maximo);
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ambar-oscuro);
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.titulo-seccion {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    letter-spacing: -0.01em;
+    color: var(--marron);
+}
+
+.encabezado-seccion {
+    max-width: 520px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.subtitulo-seccion {
+    color: var(--marron-suave);
+    margin-top: 10px;
+}
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal].en-vista {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Botones */
+.boton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform var(--rapido), background-color var(--rapido), border-color var(--rapido);
+}
+
+.boton--solido {
+    background-color: var(--marron);
+    color: var(--crema);
+}
+
+.boton--solido:hover {
+    background-color: var(--ambar-oscuro);
+    transform: translateY(-1px);
+}
+
+.boton--texto {
+    padding: 13px 4px;
+    color: var(--marron-suave);
+}
+
+.boton--texto:hover {
+    color: var(--ambar-oscuro);
+}
+
+.boton--sm {
+    padding: 9px 20px;
+    font-size: 0.85rem;
+}
+
+.boton--whatsapp {
+    background-color: #25d366;
+    color: #14331f;
+    margin-top: 24px;
+}
+
+.boton--whatsapp:hover {
+    background-color: #1fb858;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(244, 237, 225, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--linea);
+}
+
+.header__fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+}
+
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--marron);
+}
+
+.marca__icono {
+    color: var(--ambar);
+    flex-shrink: 0;
+}
+
+.nav-escritorio {
+    display: none;
+    gap: 30px;
+}
+
+.nav-escritorio a {
+    font-size: 0.92rem;
+    color: var(--marron-suave);
+    transition: color var(--rapido);
+}
+
+.nav-escritorio a:hover {
+    color: var(--ambar-oscuro);
+}
+
+.nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 30px;
+    height: 30px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--marron);
+    transition: transform var(--rapido);
+}
+
+.nav-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(4px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+}
+
+.nav-movil {
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--papel);
+    border-bottom: 1px solid var(--linea);
+    transition: max-height var(--medio);
+}
+
+.nav-movil.abierto {
+    max-height: 320px;
+}
+
+.nav-movil a {
+    padding: 15px 22px;
+    border-top: 1px solid var(--linea);
+    color: var(--marron-suave);
+    font-size: 0.95rem;
+}
+
+.nav-movil .boton {
+    margin: 14px 22px;
+    justify-content: center;
+}
+
+/* =========================================
+   HERO
+========================================= */
+.hero {
+    padding: 56px 0 72px;
+}
+
+.hero__grid {
+    display: grid;
+    gap: 40px;
+}
+
+.hero__titulo {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.3rem, 7vw, 3.6rem);
+    line-height: 1.1;
+    color: var(--marron);
+    margin-bottom: 22px;
+}
+
+.hero__titulo em {
+    font-style: italic;
+    color: var(--ambar-oscuro);
+}
+
+.hero__sub {
+    font-size: 1.05rem;
+    color: var(--marron-suave);
+    max-width: 440px;
+    margin-bottom: 32px;
+}
+
+.hero__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero__etiqueta {
+    width: 100%;
+    max-width: 300px;
+    background-color: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(43, 31, 23, 0.06);
+}
+
+.hero__etiqueta-eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ambar-oscuro);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.hero__etiqueta-nombre {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.hero__etiqueta-detalle {
+    font-size: 0.85rem;
+    color: var(--marron-suave);
+}
+
+/* =========================================
+   NUESTRA CERVEZA
+========================================= */
+.cervezas {
+    padding: 72px 0;
+    border-top: 1px solid var(--linea);
+}
+
+.cervezas__grid {
+    display: grid;
+    gap: 18px;
+}
+
+.tarjeta-cerveza {
+    background-color: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    overflow: hidden;
+    transition: transform var(--rapido), box-shadow var(--rapido);
+}
+
+.tarjeta-cerveza:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(43, 31, 23, 0.08);
+}
+
+.tarjeta-cerveza__franja {
+    height: 6px;
+}
+
+.tarjeta-cerveza__franja--ambar { background-color: #c17a3d; }
+.tarjeta-cerveza__franja--rubia { background-color: #e3c468; }
+.tarjeta-cerveza__franja--ipa { background-color: #d4912f; }
+.tarjeta-cerveza__franja--negra { background-color: #3d2b1f; }
+
+.tarjeta-cerveza__cuerpo {
+    padding: 24px;
+}
+
+.tarjeta-cerveza__cuerpo h3 {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+}
+
+.tarjeta-cerveza__specs {
+    font-size: 0.82rem;
+    color: var(--ambar-oscuro);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.tarjeta-cerveza__texto {
+    font-size: 0.92rem;
+    color: var(--marron-suave);
+}
+
+/* =========================================
+   HISTORIA
+========================================= */
+.historia {
+    padding: 72px 0;
+    border-top: 1px solid var(--linea);
+    background-color: var(--crema-oscura);
+}
+
+.historia__grid {
+    display: grid;
+    gap: 36px;
+}
+
+.historia__foto {
+    aspect-ratio: 4 / 3;
+    background-color: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.historia__foto span {
+    color: var(--marron-suave);
+    font-size: 0.9rem;
+}
+
+.historia__texto .titulo-seccion {
+    margin-bottom: 18px;
+}
+
+.historia__parrafo {
+    color: var(--marron-suave);
+    font-size: 0.98rem;
+    max-width: 50ch;
+    margin-bottom: 14px;
+}
+
+.historia__lista {
+    margin-top: 18px;
+}
+
+.historia__lista li {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.92rem;
+}
+
+/* =========================================
+   PUNTOS DE VENTA
+========================================= */
+.puntos-venta {
+    padding: 72px 0;
+    border-top: 1px solid var(--linea);
+}
+
+.puntos-venta__grid {
+    display: grid;
+    gap: 16px;
+}
+
+.punto-venta {
+    background-color: var(--papel);
+    border: 1px solid var(--linea);
+    border-left: 3px solid var(--ambar);
+    border-radius: var(--radio);
+    padding: 22px;
+}
+
+.punto-venta h3 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.punto-venta p {
+    color: var(--marron-suave);
+    font-size: 0.9rem;
+}
+
+.punto-venta__horario {
+    margin-top: 8px;
+    color: var(--ambar-oscuro);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+/* =========================================
+   EVENTOS
+========================================= */
+.eventos {
+    padding: 72px 0;
+    border-top: 1px solid var(--linea);
+    background-color: var(--crema-oscura);
+}
+
+.eventos__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.evento {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-top: 1px solid var(--linea);
+}
+
+.eventos__lista .evento:last-child {
+    border-bottom: 1px solid var(--linea);
+}
+
+.evento__fecha {
+    flex-shrink: 0;
+    width: 64px;
+    text-align: center;
+    background-color: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: 8px;
+    padding: 10px 0;
+}
+
+.evento__dia {
+    display: block;
+    font-family: var(--display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--marron);
+}
+
+.evento__mes {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--ambar-oscuro);
+    font-weight: 600;
+}
+
+.evento__cuerpo h3 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.evento__cuerpo p {
+    color: var(--marron-suave);
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   CONTACTO
+========================================= */
+.contacto {
+    padding: 72px 0 88px;
+    border-top: 1px solid var(--linea);
+}
+
+.contacto__grid {
+    display: grid;
+    gap: 40px;
+}
+
+.contacto__sub {
+    color: var(--marron-suave);
+    margin: 14px 0 20px;
+}
+
+.contacto__lista li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.formulario__campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 500;
+    font-size: 0.92rem;
+    color: var(--marron-suave);
+}
+
+.formulario__campo input,
+.formulario__campo textarea {
+    font-family: var(--texto);
+    font-size: 1rem;
+    padding: 11px 14px;
+    background-color: var(--papel);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    color: var(--marron);
+    resize: vertical;
+}
+
+.formulario__campo input:focus,
+.formulario__campo textarea:focus {
+    outline: none;
+    border-color: var(--ambar);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.footer {
+    border-top: 1px solid var(--linea);
+    background-color: var(--marron);
+    color: var(--crema);
+    padding: 48px 0 0;
+}
+
+.footer__grid {
+    display: grid;
+    gap: 36px;
+    padding-bottom: 36px;
+}
+
+.footer .marca--footer {
+    color: var(--crema);
+}
+
+.footer .marca__icono {
+    color: var(--ambar);
+}
+
+.footer__descripcion {
+    color: #c9bba9;
+    font-size: 0.88rem;
+    max-width: 30ch;
+    margin: 12px 0 18px;
+}
+
+.footer__redes {
+    display: flex;
+    gap: 12px;
+}
+
+.footer__redes a {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #4a3b2c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c9bba9;
+    transition: color var(--rapido), border-color var(--rapido);
+}
+
+.footer__redes a:hover {
+    color: var(--ambar);
+    border-color: var(--ambar);
+}
+
+.footer__columna {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.footer__columna h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #998b78;
+    margin-bottom: 4px;
+}
+
+.footer__columna a,
+.footer__horario {
+    color: #c9bba9;
+    font-size: 0.88rem;
+    transition: color var(--rapido);
+}
+
+.footer__columna a:hover {
+    color: var(--ambar);
+}
+
+.footer__legal {
+    border-top: 1px solid #4a3b2c;
+    padding: 18px 22px;
+}
+
+.footer__legal p {
+    color: #998b78;
+    font-size: 0.8rem;
+}
+
+/* =========================================
+   RESPONSIVE — mobile-first
+========================================= */
+@media (min-width: 560px) {
+    .cervezas__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .puntos-venta__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 760px) {
+    .historia__grid {
+        grid-template-columns: 1fr 1.1fr;
+        align-items: center;
+        gap: 56px;
+    }
+
+    .contacto__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+    }
+
+    .footer__grid {
+        grid-template-columns: 1.4fr 1fr 1fr;
+    }
+}
+
+@media (min-width: 900px) {
+    .nav-escritorio {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+
+    .hero__grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 56px;
+    }
+
+    .hero {
+        padding: 80px 0 96px;
+    }
+
+    .cervezas__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
