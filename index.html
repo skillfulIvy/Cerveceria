@@ -3,31 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forja Cervecería Artesanal — Hermosillo</title>
-<meta name="description" content="Cervecería artesanal en Hermosillo. Cerveza elaborada a mano, en pequeños lotes, con fuego y paciencia. Conoce nuestras variedades y puntos de venta.">
+<title>Forja Cervecería — Cerveza artesanal</title>
+<meta name="description" content="Cervecería artesanal Forja. Cuatro estilos forjados a fuego lento, historia de marca y puntos de venta. Bebe con responsabilidad.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="grano"></div>
+
+<!-- ============ VERIFICACIÓN DE EDAD ============ -->
+<div class="gate" id="gate">
+  <div class="gate__caja">
+    <span class="marca marca--gate">FORJA<span>.</span></span>
+    <h2 class="gate__titulo">¿Eres mayor de edad?</h2>
+    <p class="gate__texto">Este sitio promociona bebidas alcohólicas. Confirma tu edad para continuar.</p>
+    <div class="gate__acciones">
+      <button class="boton boton--solido" id="gateSi">Sí, soy mayor de edad</button>
+      <a href="https://www.google.com" class="boton boton--linea">Salir</a>
+    </div>
+  </div>
+</div>
+
 <header class="header" id="header">
   <div class="contenedor header__fila">
-    <a href="#" class="marca">
-      <svg class="marca__icono" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
-        <path d="M10 6h12v3l-2 17a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2L10 9V6z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M10 12h12" stroke="currentColor" stroke-width="1.4"/>
-        <path d="M22 13c2 0 3.5 1.3 3.5 3s-1.5 3-3.5 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-      </svg>
-      <span>Forja</span>
+    <a href="#inicio" class="marca">
+      <img src="img/logo.svg" alt="Forja Cervecería" class="marca__logo">
+      <span>FORJA</span>
     </a>
 
     <nav class="nav-escritorio">
-      <a href="#cervezas">Nuestra Cerveza</a>
+      <a href="#cerveza">Nuestra Cerveza</a>
       <a href="#historia">Historia</a>
-      <a href="#puntos-venta">Dónde encontrarnos</a>
-      <a href="#eventos">Eventos</a>
+      <a href="#puntos-de-venta">Dónde encontrarnos</a>
+      <a href="#noticias">Noticias</a>
     </nav>
 
     <a href="#contacto" class="boton boton--solido boton--sm">Contacto</a>
@@ -38,209 +49,223 @@
   </div>
 
   <nav class="nav-movil" id="navMovil">
-    <a href="#cervezas">Nuestra Cerveza</a>
+    <a href="#inicio">Inicio</a>
+    <a href="#cerveza">Nuestra Cerveza</a>
     <a href="#historia">Historia</a>
-    <a href="#puntos-venta">Dónde encontrarnos</a>
-    <a href="#eventos">Eventos</a>
-    <a href="#contacto" class="boton boton--solido">Escríbenos</a>
+    <a href="#puntos-de-venta">Dónde encontrarnos</a>
+    <a href="#noticias">Noticias</a>
+    <a href="#contacto" class="boton boton--solido">Contacto</a>
   </nav>
 </header>
 
 <main>
 
   <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="contenedor hero__grid">
-      <div class="hero__texto" data-reveal>
-        <span class="eyebrow">Cervecería artesanal · Hermosillo</span>
-        <h1 class="hero__titulo">
-          Cerveza hecha<br>
-          con <em>fuego</em><br>
-          y paciencia.
-        </h1>
-        <p class="hero__sub">
-          Lotes pequeños, ingredientes reales y el tiempo que cada
-          receta necesita. Nada apurado, nada de atajos.
-        </p>
-        <div class="hero__acciones">
-          <a href="#cervezas" class="boton boton--solido">Ver nuestras cervezas</a>
-          <a href="#puntos-venta" class="boton boton--texto">¿Dónde la encuentro? →</a>
-        </div>
-      </div>
+  <section class="hero" id="inicio">
+    <!-- Mientras no haya video real, el poster (img/hero-poster.svg) se queda
+         fijo en pantalla. Reemplaza ambos por footage real: cerveza fría,
+         condensación o un vertido lento, oscurecido por el overlay de abajo. -->
+    <video class="hero__video" autoplay muted loop playsinline poster="img/hero-poster.svg">
+      <source src="img/hero-bg.mp4" type="video/mp4">
+    </video>
+    <div class="hero__overlay"></div>
 
-      <div class="hero__visual" data-reveal>
-        <div class="hero__etiqueta">
-          <span class="hero__etiqueta-eyebrow">Lote actual</span>
-          <p class="hero__etiqueta-nombre">Ámbar de Roble</p>
-          <p class="hero__etiqueta-detalle">6.2% ABV · Notas a caramelo y madera tostada</p>
-        </div>
+    <a href="#cerveza" class="hero__insignia" aria-label="Bajar a la siguiente sección">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <path id="circuloTexto" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"/>
+        <text font-family="Oswald, sans-serif" font-size="9" letter-spacing="3" fill="#f5ede1">
+          <textPath href="#circuloTexto">SCROLL · SCROLL · SCROLL ·</textPath>
+        </text>
+      </svg>
+      <span class="hero__insignia-flecha">↓</span>
+    </a>
+
+    <div class="contenedor hero__contenido" data-reveal>
+      <span class="eyebrow">Cerveza artesanal · Desde 2018</span>
+      <h1 class="hero__titulo">Forjamos<br>cada lote<br>como una <em>promesa</em>.</h1>
+      <p class="hero__sub">Ingredientes seleccionados, procesos lentos y un sabor que no se improvisa.</p>
+      <div class="hero__acciones">
+        <a href="#cerveza" class="boton boton--solido boton--grande">Ver nuestras cervezas</a>
+        <a href="#puntos-de-venta" class="boton boton--texto">Dónde comprarla →</a>
       </div>
     </div>
   </section>
 
   <!-- ============ NUESTRA CERVEZA ============ -->
-  <section class="cervezas" id="cervezas">
+  <section class="cerveza" id="cerveza">
     <div class="contenedor">
       <div class="encabezado-seccion" data-reveal>
         <span class="eyebrow">Nuestra Cerveza</span>
-        <h2 class="titulo-seccion">Cuatro recetas, cero atajos</h2>
-        <p class="subtitulo-seccion">Cada una elaborada en lotes de no más de 500 litros.</p>
+        <h2 class="titulo-seccion">Cuatro estilos, una sola filosofía</h2>
       </div>
 
-      <div class="cervezas__grid">
+      <div class="lista-cervezas">
 
-        <article class="tarjeta-cerveza" data-reveal>
-          <div class="tarjeta-cerveza__franja tarjeta-cerveza__franja--ambar"></div>
-          <div class="tarjeta-cerveza__cuerpo">
-            <h3>Ámbar de Roble</h3>
-            <p class="tarjeta-cerveza__specs">6.2% ABV · 28 IBU</p>
-            <p class="tarjeta-cerveza__texto">Maltas tostadas, reposo en madera. Cuerpo medio, final seco.</p>
+        <article class="fila-cerveza" data-reveal>
+          <span class="fila-cerveza__num">01</span>
+          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-rubia.svg')"></div>
+          <div class="fila-cerveza__cuerpo">
+            <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Rubia Forja</h3>
+            <p>Golden Ale · Ligera, refrescante y con un final limpio. Ideal para empezar la noche.</p>
           </div>
+          <span class="fila-cerveza__dato">4.8% ABV</span>
         </article>
 
-        <article class="tarjeta-cerveza" data-reveal>
-          <div class="tarjeta-cerveza__franja tarjeta-cerveza__franja--rubia"></div>
-          <div class="tarjeta-cerveza__cuerpo">
-            <h3>Rubia del Desierto</h3>
-            <p class="tarjeta-cerveza__specs">4.8% ABV · 18 IBU</p>
-            <p class="tarjeta-cerveza__texto">Ligera, refrescante, pensada para el calor de Sonora.</p>
+        <article class="fila-cerveza" data-reveal>
+          <span class="fila-cerveza__num">02</span>
+          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-roja.svg')"></div>
+          <div class="fila-cerveza__cuerpo">
+            <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Roja Carmín</h3>
+            <p>Amber Ale · Notas a caramelo tostado con un amargor justo. La más pedida en barra.</p>
           </div>
+          <span class="fila-cerveza__dato">5.5% ABV</span>
         </article>
 
-        <article class="tarjeta-cerveza" data-reveal>
-          <div class="tarjeta-cerveza__franja tarjeta-cerveza__franja--ipa"></div>
-          <div class="tarjeta-cerveza__cuerpo">
-            <h3>IPA de Lúpulo Salvaje</h3>
-            <p class="tarjeta-cerveza__specs">6.8% ABV · 62 IBU</p>
-            <p class="tarjeta-cerveza__texto">Amargor franco, aromas cítricos y resinosos.</p>
+        <article class="fila-cerveza" data-reveal>
+          <span class="fila-cerveza__num">03</span>
+          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-negra.svg')"></div>
+          <div class="fila-cerveza__cuerpo">
+            <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Negra Fragua</h3>
+            <p>Stout · Café, chocolate y cuerpo intenso. Para tomar despacio.</p>
           </div>
+          <span class="fila-cerveza__dato">6.2% ABV</span>
         </article>
 
-        <article class="tarjeta-cerveza" data-reveal>
-          <div class="tarjeta-cerveza__franja tarjeta-cerveza__franja--negra"></div>
-          <div class="tarjeta-cerveza__cuerpo">
-            <h3>Negra de Invierno</h3>
-            <p class="tarjeta-cerveza__specs">7.1% ABV · 32 IBU</p>
-            <p class="tarjeta-cerveza__texto">Café y chocolate oscuro. Edición de temporada.</p>
+        <article class="fila-cerveza" data-reveal>
+          <span class="fila-cerveza__num">04</span>
+          <div class="fila-cerveza__imagen" style="background-image:url('img/beer-ipa.svg')"></div>
+          <div class="fila-cerveza__cuerpo">
+            <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">IPA Yunque</h3>
+            <p>India Pale Ale · Lupulada, cítrica y con carácter. La favorita de los exploradores.</p>
           </div>
+          <span class="fila-cerveza__dato">6.8% ABV</span>
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- ============ HISTORIA Y FILOSOFÍA ============ -->
+  <!-- ============ HISTORIA ============ -->
   <section class="historia" id="historia">
     <div class="contenedor historia__grid">
       <div class="historia__visual" data-reveal>
-        <div class="historia__foto">
-          <span>Foto del taller de elaboración</span>
-        </div>
+        <div class="historia__foto" style="background-image:url('img/historia.svg')"></div>
       </div>
 
       <div class="historia__texto" data-reveal>
-        <span class="eyebrow">Nuestra historia</span>
-        <h2 class="titulo-seccion">De una cochera a una marca</h2>
-        <p class="historia__parrafo">
-          Forja empezó en 2020 como un experimento entre amigos en una
-          cochera de Hermosillo. Tres lotes fallidos después, encontramos
-          la receta que nos hizo decir "esto sí se puede vender".
-        </p>
-        <p class="historia__parrafo">
-          Seguimos creyendo en lo mismo: cerveza elaborada a mano, sin
-          prisas, con ingredientes que podemos explicar uno por uno.
-          Nada de atajos industriales.
-        </p>
-        <ul class="historia__lista">
-          <li>✔ Elaboración 100% artesanal, en Hermosillo</li>
-          <li>✔ Lotes pequeños, trazabilidad completa</li>
-          <li>✔ Ingredientes seleccionados, sin conservadores</li>
-        </ul>
+        <span class="eyebrow">Nuestra Historia</span>
+        <h2 class="titulo-seccion">De un garaje a la barra de tu bar favorito</h2>
+        <p>Forja nació en 2018 en un garaje de barrio, con una olla de 20 litros y la idea fija de hacer cerveza que valiera la pena compartir.</p>
+        <p>Hoy seguimos cocinando cada lote con el mismo cuidado artesanal del primer día: sin atajos, sin pasteurizar de más, sin perder el control de calidad que nos identifica.</p>
+        <p>Nuestra filosofía es simple: <strong>cerveza honesta, hecha por gente que la disfruta tanto como tú.</strong></p>
       </div>
     </div>
   </section>
 
   <!-- ============ PUNTOS DE VENTA ============ -->
-  <section class="puntos-venta" id="puntos-venta">
+  <section class="puntos" id="puntos-de-venta">
     <div class="contenedor">
       <div class="encabezado-seccion" data-reveal>
         <span class="eyebrow">Dónde encontrarnos</span>
-        <h2 class="titulo-seccion">Puntos de venta</h2>
+        <h2 class="titulo-seccion">Puntos de venta y distribuidores</h2>
       </div>
 
-      <div class="puntos-venta__grid">
-
-        <article class="punto-venta" data-reveal>
-          <h3>Taproom Forja</h3>
-          <p>Blvd. Ejemplo 789, Hermosillo</p>
-          <p class="punto-venta__horario">Jue – Sáb, 5:00 PM – 12:00 AM</p>
-        </article>
-
-        <article class="punto-venta" data-reveal>
-          <h3>Mercado Local Sonora</h3>
-          <p>Puesto de cervezas artesanales, planta baja</p>
-          <p class="punto-venta__horario">Mar – Dom, 10:00 AM – 8:00 PM</p>
-        </article>
-
-        <article class="punto-venta" data-reveal>
-          <h3>Restaurante El Asador</h3>
-          <p>Disponible en barril y botella</p>
-          <p class="punto-venta__horario">Todos los días</p>
-        </article>
-
-        <article class="punto-venta" data-reveal>
-          <h3>Envíos a domicilio</h3>
-          <p>Pedidos directo por WhatsApp en Hermosillo</p>
-          <p class="punto-venta__horario">Lun – Sáb, 11:00 AM – 7:00 PM</p>
-        </article>
-
+      <div class="puntos__grid">
+        <div class="puntos__tarjeta" data-reveal>
+          <h3>Bar El Yunque</h3>
+          <p>Av. Principal 245, Centro</p>
+          <span class="puntos__horario">Lun a Sáb · 18:00 – 01:00</span>
+        </div>
+        <div class="puntos__tarjeta" data-reveal>
+          <h3>Mercado Central</h3>
+          <p>Local 12, Zona Gourmet</p>
+          <span class="puntos__horario">Todos los días · 10:00 – 20:00</span>
+        </div>
+        <div class="puntos__tarjeta" data-reveal>
+          <h3>Tienda Online</h3>
+          <p>Envíos a todo el país</p>
+          <a href="#contacto" class="puntos__enlace">Consultar disponibilidad →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ EVENTOS ============ -->
-  <section class="eventos" id="eventos">
+  <!-- ============ NOTICIAS / EVENTOS ============ -->
+  <section class="noticias" id="noticias">
     <div class="contenedor">
       <div class="encabezado-seccion" data-reveal>
-        <span class="eyebrow">Eventos y noticias</span>
+        <span class="eyebrow">Noticias y Eventos</span>
         <h2 class="titulo-seccion">Lo que se viene</h2>
       </div>
 
-      <div class="eventos__lista">
-
-        <article class="evento" data-reveal>
-          <div class="evento__fecha">
-            <span class="evento__dia">12</span>
-            <span class="evento__mes">Jul</span>
-          </div>
-          <div class="evento__cuerpo">
-            <h3>Noche de lanzamiento: Negra de Invierno</h3>
-            <p>Presentación de la edición de temporada, en el taproom.</p>
-          </div>
+      <div class="noticias__grid">
+        <article class="noticias__tarjeta" data-reveal>
+          <span class="noticias__fecha">12 Jul 2026</span>
+          <h3>Lanzamiento: IPA Yunque edición verano</h3>
+          <p>Una versión más cítrica y refrescante, disponible por tiempo limitado.</p>
         </article>
-
-        <article class="evento" data-reveal>
-          <div class="evento__fecha">
-            <span class="evento__dia">26</span>
-            <span class="evento__mes">Jul</span>
-          </div>
-          <div class="evento__cuerpo">
-            <h3>Tour por la cervecería</h3>
-            <p>Recorrido guiado por el proceso de elaboración, cupo limitado.</p>
-          </div>
+        <article class="noticias__tarjeta" data-reveal>
+          <span class="noticias__fecha">02 Ago 2026</span>
+          <h3>Noche de maridaje en Bar El Yunque</h3>
+          <p>Cuatro estilos, cuatro platos. Cupos limitados, reservá con anticipación.</p>
         </article>
-
-        <article class="evento" data-reveal>
-          <div class="evento__fecha">
-            <span class="evento__dia">09</span>
-            <span class="evento__mes">Ago</span>
-          </div>
-          <div class="evento__cuerpo">
-            <h3>Maridaje: Forja + El Asador</h3>
-            <p>Cena de cuatro tiempos maridada con nuestras cuatro cervezas.</p>
-          </div>
+        <article class="noticias__tarjeta" data-reveal>
+          <span class="noticias__fecha">20 Ago 2026</span>
+          <h3>Visitas guiadas a la cervecería</h3>
+          <p>Conocé el proceso de elaboración y degustá directo del tanque.</p>
         </article>
+      </div>
+    </div>
+  </section>
 
+  <!-- ============ PREGUNTAS FRECUENTES ============ -->
+  <section class="faq" id="faq">
+    <div class="contenedor faq__grid">
+      <div class="encabezado-seccion encabezado-seccion--fija" data-reveal>
+        <span class="eyebrow">Preguntas</span>
+        <h2 class="titulo-seccion">Antes de pedir</h2>
+      </div>
+
+      <div class="acordeon" data-reveal>
+        <div class="acordeon__item">
+          <button class="acordeon__pregunta">
+            ¿Hacen envíos a domicilio?
+            <span class="acordeon__icono"></span>
+          </button>
+          <div class="acordeon__respuesta">
+            <p>Sí, a través de nuestra tienda online. Los tiempos de entrega varían según la zona.</p>
+          </div>
+        </div>
+
+        <div class="acordeon__item">
+          <button class="acordeon__pregunta">
+            ¿Puedo visitar la cervecería?
+            <span class="acordeon__icono"></span>
+          </button>
+          <div class="acordeon__respuesta">
+            <p>Sí, organizamos visitas guiadas. Revisa la sección de noticias para conocer las próximas fechas.</p>
+          </div>
+        </div>
+
+        <div class="acordeon__item">
+          <button class="acordeon__pregunta">
+            ¿Tienen opciones sin alcohol?
+            <span class="acordeon__icono"></span>
+          </button>
+          <div class="acordeon__respuesta">
+            <p>Actualmente no, pero estamos trabajando en una versión 0.0% para el próximo año.</p>
+          </div>
+        </div>
+
+        <div class="acordeon__item">
+          <button class="acordeon__pregunta">
+            ¿Cómo me convierto en distribuidor?
+            <span class="acordeon__icono"></span>
+          </button>
+          <div class="acordeon__respuesta">
+            <p>Escríbenos desde la sección de contacto contándonos sobre tu local y te responderemos con los detalles.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -251,33 +276,35 @@
       <div class="contacto__info" data-reveal>
         <span class="eyebrow">Contacto</span>
         <h2 class="titulo-seccion">Hablemos</h2>
-        <p class="contacto__sub">
-          Para pedidos, eventos privados o solo para platicar de cerveza.
-        </p>
+        <p class="contacto__sub">¿Querés distribuir nuestra cerveza, organizar un evento o simplemente saludarnos? Escribinos.</p>
         <ul class="contacto__lista">
-          <li><strong>Dirección:</strong> Blvd. Ejemplo 789, Hermosillo, Son.</li>
-          <li><strong>Teléfono:</strong> 662 987 6543</li>
-          <li><strong>Correo:</strong> hola@forjacerveceria.mx</li>
+          <li>Calle Falsa 123, Tu Ciudad</li>
+          <li>hola@cerveceriaforja.com</li>
+          <li>+54 9 11 0000-0000</li>
         </ul>
-        <a href="https://wa.me/526629876543?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20de%20Forja" class="boton boton--whatsapp" target="_blank" rel="noopener">
-          Escribir por WhatsApp
-        </a>
       </div>
 
-      <form class="formulario" id="formularioContacto" data-reveal>
-        <label class="formulario__campo">
-          Nombre
-          <input type="text" name="nombre" required>
-        </label>
-        <label class="formulario__campo">
-          Correo
-          <input type="email" name="correo" required>
-        </label>
-        <label class="formulario__campo">
-          Mensaje
-          <textarea name="mensaje" rows="4" required></textarea>
-        </label>
+      <form class="contacto__form" id="contactForm" data-reveal novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <span class="campo__error" id="error-nombre"></span>
+        </div>
+
+        <div class="campo">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+          <span class="campo__error" id="error-email"></span>
+        </div>
+
+        <div class="campo">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          <span class="campo__error" id="error-mensaje"></span>
+        </div>
+
         <button type="submit" class="boton boton--solido">Enviar mensaje</button>
+        <p class="contacto__exito" id="formSuccess">¡Gracias! Te responderemos a la brevedad.</p>
       </form>
     </div>
   </section>
@@ -286,35 +313,23 @@
 
 <footer class="footer">
   <div class="contenedor footer__grid">
-
     <div class="footer__marca">
       <span class="marca marca--footer">
-        <svg class="marca__icono" viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
-          <path d="M10 6h12v3l-2 17a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2L10 9V6z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M10 12h12" stroke="currentColor" stroke-width="1.4"/>
-        </svg>
-        Forja
+        <img src="img/logo.svg" alt="Forja Cervecería" class="marca__logo marca__logo--footer">
+        FORJA<span>.</span>
       </span>
-      <p class="footer__descripcion">
-        Cervecería artesanal en Hermosillo. Lotes pequeños, hechos a mano.
-      </p>
+      <p class="footer__descripcion">Cerveza artesanal hecha con fuego y paciencia desde 2018.</p>
       <div class="footer__redes">
-        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5"/>
             <circle cx="12" cy="12" r="4"/>
             <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
           </svg>
         </a>
-        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path d="M15 8h2V4h-2a4 4 0 0 0-4 4v2H9v4h2v8h4v-8h2.5l.5-4H15V8z"/>
-          </svg>
-        </a>
-        <a href="https://wa.me/526629876543" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true">
-            <path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5C10 9 9.4 7.6 9.1 7c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.1-1.4-.1-.1-.3-.2-.6-.3z"/>
-            <path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.6 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.2.9.9-3.1-.2-.3c-.9-1.4-1.4-3.1-1.4-4.8 0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.9 8.7-8.7 8.7z"/>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 21v-7h2.4l.4-3h-2.8V9.2c0-.9.3-1.5 1.6-1.5h1.4V5c-.7-.1-1.5-.2-2.4-.2-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3H10v7h3.5z"/>
           </svg>
         </a>
       </div>
@@ -322,25 +337,22 @@
 
     <div class="footer__columna">
       <h3>Navegación</h3>
-      <a href="#cervezas">Nuestra Cerveza</a>
+      <a href="#cerveza">Nuestra Cerveza</a>
       <a href="#historia">Historia</a>
-      <a href="#puntos-venta">Puntos de venta</a>
-      <a href="#eventos">Eventos</a>
+      <a href="#puntos-de-venta">Dónde encontrarnos</a>
+      <a href="#faq">Preguntas</a>
     </div>
 
     <div class="footer__columna">
       <h3>Contacto</h3>
-      <a href="https://maps.google.com/?q=Blvd.+Ejemplo+789,+Hermosillo,+Sonora" target="_blank" rel="noopener">
-        Blvd. Ejemplo 789, Hermosillo
-      </a>
-      <a href="https://wa.me/526629876543">662 987 6543</a>
-      <span class="footer__horario">hola@forjacerveceria.mx</span>
+      <a href="#contacto">hola@cerveceriaforja.com</a>
+      <a href="#contacto">+54 9 11 0000-0000</a>
+      <span class="footer__horario">Lun a Sáb · 10:00 – 20:00</span>
     </div>
-
   </div>
 
   <div class="contenedor footer__legal">
-    <p>&copy; 2026 Forja Cervecería Artesanal. Hermosillo, Sonora. Disfruta con moderación.</p>
+    <p>&copy; <span id="year"></span> Cervecería Forja. Bebe con responsabilidad.</p>
   </div>
 </footer>
 
