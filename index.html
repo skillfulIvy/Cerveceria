@@ -12,14 +12,16 @@
 </head>
 <body>
 
+<a href="#contenido-principal" class="salto-contenido">Saltar al contenido</a>
+
 <div class="grano"></div>
 
 <!-- ============ VERIFICACIÓN DE EDAD ============ -->
-<div class="gate" id="gate">
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitulo" aria-describedby="gateTexto">
   <div class="gate__caja">
     <span class="marca marca--gate">FORJA<span>.</span></span>
-    <h2 class="gate__titulo">¿Eres mayor de edad?</h2>
-    <p class="gate__texto">Este sitio promociona bebidas alcohólicas. Confirma tu edad para continuar.</p>
+    <h2 class="gate__titulo" id="gateTitulo">¿Eres mayor de edad?</h2>
+    <p class="gate__texto" id="gateTexto">Este sitio promociona bebidas alcohólicas. Confirma tu edad para continuar.</p>
     <div class="gate__acciones">
       <button class="boton boton--solido" id="gateSi">Sí, soy mayor de edad</button>
       <a href="https://www.google.com" class="boton boton--linea">Salir</a>
@@ -39,6 +41,7 @@
       <a href="#historia">Historia</a>
       <a href="#puntos-de-venta">Dónde encontrarnos</a>
       <a href="#noticias">Noticias</a>
+      <a href="#faq">Preguntas</a>
     </nav>
 
     <a href="#contacto" class="boton boton--solido boton--sm">Contacto</a>
@@ -54,11 +57,12 @@
     <a href="#historia">Historia</a>
     <a href="#puntos-de-venta">Dónde encontrarnos</a>
     <a href="#noticias">Noticias</a>
+    <a href="#faq">Preguntas</a>
     <a href="#contacto" class="boton boton--solido">Contacto</a>
   </nav>
 </header>
 
-<main>
+<main id="contenido-principal">
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="inicio">
@@ -279,8 +283,8 @@
         <p class="contacto__sub">¿Querés distribuir nuestra cerveza, organizar un evento o simplemente saludarnos? Escribinos.</p>
         <ul class="contacto__lista">
           <li>Calle Falsa 123, Tu Ciudad</li>
-          <li>hola@cerveceriaforja.com</li>
-          <li>+54 9 11 0000-0000</li>
+          <li><a href="mailto:hola@cerveceriaforja.com">hola@cerveceriaforja.com</a></li>
+          <li><a href="tel:+5491100000000">+54 9 11 0000-0000</a></li>
         </ul>
       </div>
 
@@ -288,23 +292,23 @@
         <div class="campo">
           <label for="nombre">Nombre</label>
           <input type="text" id="nombre" name="nombre" required>
-          <span class="campo__error" id="error-nombre"></span>
+          <span class="campo__error" id="error-nombre" aria-live="polite"></span>
         </div>
 
         <div class="campo">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" required>
-          <span class="campo__error" id="error-email"></span>
+          <span class="campo__error" id="error-email" aria-live="polite"></span>
         </div>
 
         <div class="campo">
           <label for="mensaje">Mensaje</label>
           <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-          <span class="campo__error" id="error-mensaje"></span>
+          <span class="campo__error" id="error-mensaje" aria-live="polite"></span>
         </div>
 
         <button type="submit" class="boton boton--solido">Enviar mensaje</button>
-        <p class="contacto__exito" id="formSuccess">¡Gracias! Te responderemos a la brevedad.</p>
+        <p class="contacto__exito" id="formSuccess" aria-live="polite">¡Gracias! Te responderemos a la brevedad.</p>
       </form>
     </div>
   </section>
@@ -345,8 +349,8 @@
 
     <div class="footer__columna">
       <h3>Contacto</h3>
-      <a href="#contacto">hola@cerveceriaforja.com</a>
-      <a href="#contacto">+54 9 11 0000-0000</a>
+      <a href="mailto:hola@cerveceriaforja.com">hola@cerveceriaforja.com</a>
+      <a href="tel:+5491100000000">+54 9 11 0000-0000</a>
       <span class="footer__horario">Lun a Sáb · 10:00 – 20:00</span>
     </div>
   </div>

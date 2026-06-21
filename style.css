@@ -50,6 +50,21 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 ::selection { background-color: var(--ambar); color: var(--negro); }
 :focus-visible { outline: 2px solid var(--ambar); outline-offset: 3px; }
 
+/* Visible solo al recibir foco por teclado — permite saltar el gate + nav */
+.salto-contenido {
+    position: absolute;
+    left: 16px; top: -100px;
+    z-index: 300;
+    background-color: var(--ambar);
+    color: #1a1208;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: top var(--rapido);
+}
+.salto-contenido:focus { top: 16px; }
+
 /* Textura de grano sutil — le quita lo "plano" al negro */
 .grano {
     position: fixed;
@@ -67,6 +82,10 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+    /* El autoplay de <video> no es ni animación ni transición CSS,
+       así que se apaga aparte para usuarios sensibles al movimiento. */
+    .hero__video { display: none; }
+    .hero__overlay { background: var(--negro); }
 }
 
 /* =========================================
@@ -95,12 +114,20 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .encabezado-seccion { max-width: 480px; margin-bottom: 56px; }
 
 /* Reveal al hacer scroll — controlado por script.js */
-[data-reveal] {
+/* Solo se ocultan si JS confirma que puede revelarlos luego (clase añadida
+   por script.js en el <html>). Sin JS, el contenido queda visible siempre:
+   evita una página en blanco si el script falla o no carga. */
+.js-activo [data-reveal] {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 [data-reveal].en-vista { opacity: 1; transform: translateY(0); }
+
+/* Imprimir/exportar a PDF no dispara scroll real: forzamos todo visible */
+@media print {
+    [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
 
 /* Botones */
 .boton {
@@ -184,8 +211,8 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .nav-escritorio a { font-size: 0.92rem; color: var(--gris); transition: color var(--rapido); }
 .nav-escritorio a:hover { color: var(--hueso); }
 
-.nav-toggle { display: flex; flex-direction: column; justify-content: center; gap: 6px; width: 32px; height: 32px; }
-.nav-toggle span { display: block; width: 100%; height: 1.5px; background-color: var(--hueso); transition: transform var(--rapido); }
+.nav-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; width: 44px; height: 44px; }
+.nav-toggle span { display: block; width: 22px; height: 1.5px; background-color: var(--hueso); transition: transform var(--rapido); }
 .nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.75px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
 
@@ -220,7 +247,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
     background: linear-gradient(180deg, rgba(14,10,7,0.55) 0%, rgba(14,10,7,0.85) 100%);
 }
 
-.hero__contenido { padding: 64px 0 88px; max-width: 640px; }
+.hero__contenido { padding-block: 64px 88px; max-width: 640px; }
 .hero__titulo {
     font-family: var(--display);
     text-transform: uppercase;
@@ -424,7 +451,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .footer__descripcion { color: var(--gris); font-size: 0.9rem; max-width: 32ch; margin: 14px 0 20px; }
 .footer__redes { display: flex; gap: 14px; }
 .footer__redes a {
-    width: 36px; height: 36px;
+    width: 44px; height: 44px;
     border: 1px solid var(--linea);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -439,7 +466,7 @@ button { font-family: inherit; cursor: pointer; background: none; border: none; 
 .footer__columna a:hover { color: var(--ambar-claro); }
 
 .footer__legal { border-top: 1px solid var(--linea); padding: 20px 24px; }
-.footer__legal p { color: var(--gris-tenue); font-size: 0.82rem; }
+.footer__legal p { color: var(--gris); font-size: 0.82rem; }
 .marca--footer { font-size: 1.3rem; color: var(--hueso); }
 
 /* =========================================
