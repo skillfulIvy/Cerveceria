@@ -5,6 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forja Cervecería — Cerveza artesanal</title>
 <meta name="description" content="Cervecería artesanal Forja. Cuatro estilos forjados a fuego lento, historia de marca y puntos de venta. Bebe con responsabilidad.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Forja Cervecería — Cerveza artesanal">
+<meta property="og:description" content="Cuatro estilos forjados a fuego lento, historia de marca y puntos de venta.">
+<meta property="og:image" content="img/hero-poster.jpg">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Brewery",
+  "name": "Forja Cervecería",
+  "image": "img/hero-poster.jpg",
+  "description": "Cervecería artesanal. Cuatro estilos forjados a fuego lento.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Falsa 123",
+    "addressLocality": "Tu Ciudad"
+  },
+  "telephone": "+5491100000000",
+  "email": "hola@cerveceriaforja.com",
+  "servesCuisine": "Cerveza artesanal",
+  "openingHours": "Mo-Sa 10:00-20:00"
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -122,7 +149,7 @@
             <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Rubia Forja</h3>
             <p>Golden Ale · Ligera, refrescante y con un final limpio. Ideal para empezar la noche.</p>
           </div>
-          <span class="fila-cerveza__dato">4.8% ABV</span>
+          <span class="fila-cerveza__dato">4.8% ABV · 18 IBU</span>
         </article>
 
         <article class="fila-cerveza" data-reveal>
@@ -132,7 +159,7 @@
             <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Roja Carmín</h3>
             <p>Amber Ale · Notas a caramelo tostado con un amargor justo. La más pedida en barra.</p>
           </div>
-          <span class="fila-cerveza__dato">5.5% ABV</span>
+          <span class="fila-cerveza__dato">5.5% ABV · 28 IBU</span>
         </article>
 
         <article class="fila-cerveza" data-reveal>
@@ -142,7 +169,7 @@
             <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">Negra Fragua</h3>
             <p>Stout · Café, chocolate y cuerpo intenso. Para tomar despacio.</p>
           </div>
-          <span class="fila-cerveza__dato">6.2% ABV</span>
+          <span class="fila-cerveza__dato">6.2% ABV · 35 IBU</span>
         </article>
 
         <article class="fila-cerveza" data-reveal>
@@ -152,7 +179,7 @@
             <h3><img src="img/logo.svg" alt="" class="fila-cerveza__sello">IPA Yunque</h3>
             <p>India Pale Ale · Lupulada, cítrica y con carácter. La favorita de los exploradores.</p>
           </div>
-          <span class="fila-cerveza__dato">6.8% ABV</span>
+          <span class="fila-cerveza__dato">6.8% ABV · 62 IBU</span>
         </article>
 
       </div>
@@ -295,7 +322,16 @@
           <li>Calle Falsa 123, Tu Ciudad</li>
           <li><a href="mailto:hola@cerveceriaforja.com">hola@cerveceriaforja.com</a></li>
           <li><a href="tel:+5491100000000">+54 9 11 0000-0000</a></li>
+          <li><a href="https://wa.me/5491100000000" class="contacto__whatsapp">Escribinos por WhatsApp →</a></li>
         </ul>
+        <div class="contacto__mapa">
+          <iframe
+            src="https://www.google.com/maps?q=Calle+Falsa+123&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de Cervecería Forja">
+          </iframe>
+        </div>
       </div>
 
       <form class="contacto__form" id="contactForm" data-reveal novalidate>
